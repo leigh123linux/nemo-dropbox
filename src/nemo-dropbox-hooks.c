@@ -1,23 +1,23 @@
 /*
  * Copyright 2008 Evenflow, Inc.
  *
- * nautilus-dropbox-hooks.c
+ * nemo-dropbox-hooks.c
  * Implements connection handling and C interface for the Dropbox hook socket.
  *
- * This file is part of nautilus-dropbox.
+ * This file is part of nemo-dropbox.
  *
- * nautilus-dropbox is free software: you can redistribute it and/or modify
+ * nemo-dropbox is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * nautilus-dropbox is distributed in the hope that it will be useful,
+ * nemo-dropbox is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with nautilus-dropbox.  If not, see <http://www.gnu.org/licenses/>.
+ * along with nemo-dropbox.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
 
@@ -35,7 +35,7 @@
 #include "g-util.h"
 #include "async-io-coroutine.h"
 #include "dropbox-client-util.h"
-#include "nautilus-dropbox-hooks.h"
+#include "nemo-dropbox-hooks.h"
 
 typedef struct {
   DropboxUpdateHook hook;
@@ -43,12 +43,12 @@ typedef struct {
 } HookData;
 
 static gboolean
-try_to_connect(NautilusDropboxHookserv *hookserv);
+try_to_connect(NemoDropboxHookserv *hookserv);
 
 static gboolean
 handle_hook_server_input(GIOChannel *chan,
 			 GIOCondition cond,
-			 NautilusDropboxHookserv *hookserv) {
+			 NemoDropboxHookserv *hookserv) {
   /*debug_enter(); */
 
   /* we have some sweet macros defined that allow us to write this
@@ -123,7 +123,7 @@ handle_hook_server_input(GIOChannel *chan,
 }
 
 static void
-watch_killer(NautilusDropboxHookserv *hookserv) {
+watch_killer(NemoDropboxHookserv *hookserv) {
   debug("hook client disconnected");
 
   hookserv->connected = FALSE;
@@ -152,7 +152,7 @@ watch_killer(NautilusDropboxHookserv *hookserv) {
 }
 
 static gboolean
-try_to_connect(NautilusDropboxHookserv *hookserv) {
+try_to_connect(NemoDropboxHookserv *hookserv) {
   /* create socket */
   hookserv->socket = socket(PF_UNIX, SOCK_STREAM, 0);
   
@@ -258,7 +258,7 @@ try_to_connect(NautilusDropboxHookserv *hookserv) {
 
 /* should only be called in glib main loop */
 /* returns a gboolean because it is a GSourceFunc */
-gboolean nautilus_dropbox_hooks_force_reconnect(NautilusDropboxHookserv *hookserv) {
+gboolean nemo_dropbox_hooks_force_reconnect(NemoDropboxHookserv *hookserv) {
   debug_enter();
 
   if (hookserv->connected == FALSE) {
@@ -280,12 +280,12 @@ gboolean nautilus_dropbox_hooks_force_reconnect(NautilusDropboxHookserv *hookser
 }
 
 gboolean
-nautilus_dropbox_hooks_is_connected(NautilusDropboxHookserv *hookserv) {
+nemo_dropbox_hooks_is_connected(NemoDropboxHookserv *hookserv) {
   return hookserv->connected;
 }
 
 void
-nautilus_dropbox_hooks_setup(NautilusDropboxHookserv *hookserv) {
+nemo_dropbox_hooks_setup(NemoDropboxHookserv *hookserv) {
   hookserv->dispatch_table = g_hash_table_new_full((GHashFunc) g_str_hash,
 						   (GEqualFunc) g_str_equal,
 						   g_free, g_free);
@@ -296,7 +296,7 @@ nautilus_dropbox_hooks_setup(NautilusDropboxHookserv *hookserv) {
 }
 
 void
-nautilus_dropbox_hooks_add_on_disconnect_hook(NautilusDropboxHookserv *hookserv,
+nemo_dropbox_hooks_add_on_disconnect_hook(NemoDropboxHookserv *hookserv,
 					      DropboxHookClientConnectHook dhcch,
 					      gpointer ud) {
   GHook *newhook;
@@ -309,7 +309,7 @@ nautilus_dropbox_hooks_add_on_disconnect_hook(NautilusDropboxHookserv *hookserv,
 }
 
 void
-nautilus_dropbox_hooks_add_on_connect_hook(NautilusDropboxHookserv *hookserv,
+nemo_dropbox_hooks_add_on_connect_hook(NemoDropboxHookserv *hookserv,
 					   DropboxHookClientConnectHook dhcch,
 					   gpointer ud) {
   GHook *newhook;
@@ -321,7 +321,7 @@ nautilus_dropbox_hooks_add_on_connect_hook(NautilusDropboxHookserv *hookserv,
   g_hook_append(&(hookserv->onconnect_hooklist), newhook);
 }
 
-void nautilus_dropbox_hooks_add(NautilusDropboxHookserv *ndhs,
+void nemo_dropbox_hooks_add(NemoDropboxHookserv *ndhs,
 				const gchar *hook_name,
 				DropboxUpdateHook hook, gpointer ud) {
   HookData *hd;
@@ -332,6 +332,6 @@ void nautilus_dropbox_hooks_add(NautilusDropboxHookserv *ndhs,
 }
 
 void
-nautilus_dropbox_hooks_start(NautilusDropboxHookserv *hookserv) {
+nemo_dropbox_hooks_start(NemoDropboxHookserv *hookserv) {
   try_to_connect(hookserv);
 }

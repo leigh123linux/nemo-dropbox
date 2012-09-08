@@ -2,30 +2,30 @@ INCLUDES =						\
 	-I$(top_srcdir)					\
 	-I$(top_builddir)
 
-nautilus_extensiondir=$(NAUTILUS_EXTENSION_DIR)
+nemo_extensiondir=$(NEMO_EXTENSION_DIR)
 
-nautilus_extension_LTLIBRARIES=libnautilus-dropbox.la
+nemo_extension_LTLIBRARIES=libnemo-dropbox.la
 
-libnautilus_dropbox_la_CFLAGS = 	                \
+libnemo_dropbox_la_CFLAGS = 	                \
 	-DDATADIR=\"$(datadir)\"					    \
 	-DEMBLEMDIR=\"$(EMBLEM_DIR)\"					\
 	-Wall                                           \
 	$(WARN_CFLAGS)                                  \
 	$(DISABLE_DEPRECATED_CFLAGS)					\
-	$(NAUTILUS_CFLAGS)                              \
+	$(NEMO_CFLAGS)                              \
 	$(GLIB_CFLAGS)
 
 if DEBUG
-libnautilus_dropbox_la_CFLAGS += -DND_DEBUG
+libnemo_dropbox_la_CFLAGS += -DND_DEBUG
 else
-libnautilus_dropbox_la_CFLAGS += -DG_DISABLE_ASSERT -DG_DISABLE_CHECKS
+libnemo_dropbox_la_CFLAGS += -DG_DISABLE_ASSERT -DG_DISABLE_CHECKS
 endif
 
-libnautilus_dropbox_la_SOURCES = \
-	nautilus-dropbox.c       \
-	nautilus-dropbox.h       \
-	nautilus-dropbox-hooks.h \
-	nautilus-dropbox-hooks.c \
+libnemo_dropbox_la_SOURCES = \
+	nemo-dropbox.c       \
+	nemo-dropbox.h       \
+	nemo-dropbox-hooks.h \
+	nemo-dropbox-hooks.c \
 	dropbox-command-client.h \
 	dropbox-command-client.c \
 	dropbox-client.c dropbox-client.h \
@@ -35,5 +35,5 @@ libnautilus_dropbox_la_SOURCES = \
 	dropbox-client-util.h \
 	dropbox.c
 
-libnautilus_dropbox_la_LDFLAGS = -module -avoid-version
-libnautilus_dropbox_la_LIBADD  = $(NAUTILUS_LIBS) $(GLIB_LIBS)
+libnemo_dropbox_la_LDFLAGS = -module -avoid-version
+libnemo_dropbox_la_LIBADD  = $(NEMO_LIBS) $(GLIB_LIBS)

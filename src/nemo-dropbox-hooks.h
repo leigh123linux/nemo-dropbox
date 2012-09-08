@@ -1,28 +1,28 @@
 /*
  * Copyright 2008 Evenflow, Inc.
  *
- * nautilus-dropbox-hooks.h
- * Header file for nautilus-dropbox-hooks.c
+ * nemo-dropbox-hooks.h
+ * Header file for nemo-dropbox-hooks.c
  *
- * This file is part of nautilus-dropbox.
+ * This file is part of nemo-dropbox.
  *
- * nautilus-dropbox is free software: you can redistribute it and/or modify
+ * nemo-dropbox is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * nautilus-dropbox is distributed in the hope that it will be useful,
+ * nemo-dropbox is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with nautilus-dropbox.  If not, see <http://www.gnu.org/licenses/>.
+ * along with nemo-dropbox.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
 
-#ifndef NAUTILUS_DROPBOX_HOOKS_H
-#define NAUTILUS_DROPBOX_HOOKS_H
+#ifndef NEMO_DROPBOX_HOOKS_H
+#define NEMO_DROPBOX_HOOKS_H
 
 #include <glib.h>
 
@@ -45,31 +45,31 @@ typedef struct {
   GHashTable *dispatch_table;
   GHookList ondisconnect_hooklist;
   GHookList onconnect_hooklist;
-} NautilusDropboxHookserv;
+} NemoDropboxHookserv;
 
 void
-nautilus_dropbox_hooks_setup(NautilusDropboxHookserv *);
+nemo_dropbox_hooks_setup(NemoDropboxHookserv *);
 
 void
-nautilus_dropbox_hooks_start(NautilusDropboxHookserv *);
+nemo_dropbox_hooks_start(NemoDropboxHookserv *);
 
 gboolean
-nautilus_dropbox_hooks_is_connected(NautilusDropboxHookserv *);
+nemo_dropbox_hooks_is_connected(NemoDropboxHookserv *);
 
 gboolean
-nautilus_dropbox_hooks_force_reconnect(NautilusDropboxHookserv *);
+nemo_dropbox_hooks_force_reconnect(NemoDropboxHookserv *);
 
 void
-nautilus_dropbox_hooks_add(NautilusDropboxHookserv *ndhs,
+nemo_dropbox_hooks_add(NemoDropboxHookserv *ndhs,
 			   const gchar *hook_name,
 			   DropboxUpdateHook hook, gpointer ud);
 void
-nautilus_dropbox_hooks_add_on_disconnect_hook(NautilusDropboxHookserv *hookserv,
+nemo_dropbox_hooks_add_on_disconnect_hook(NemoDropboxHookserv *hookserv,
 					      DropboxHookClientConnectHook dhcch,
 					      gpointer ud);
 
 void
-nautilus_dropbox_hooks_add_on_connect_hook(NautilusDropboxHookserv *hookserv,
+nemo_dropbox_hooks_add_on_connect_hook(NemoDropboxHookserv *hookserv,
 					   DropboxHookClientConnectHook dhcch,
 					   gpointer ud);
 

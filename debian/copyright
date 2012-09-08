@@ -1,20 +1,20 @@
 Format: http://dep.debian.net/deps/dep5/ as of 2011-06-04
-Upstream-Name: nautilus-dropbox
+Upstream-Name: nemo-dropbox
 Upstream-Contact: Rian Hunter <rian@dropbox.com>, David Euresti <david@dropbox.com>
 Source: https://www.dropbox.com/downloading?os=lnx
 Disclaimer:  This package is not part of the Debian operating system.
- The nautilus-dropbox source and binary Debian packages are part of the
+ The nemo-dropbox source and binary Debian packages are part of the
  “non-free” area in our archive. The packages in this area are not part of the
  Debian system, although they have been configured for use with Debian. We
- nevertheless support the use of the nautilus-dropbox source and binary Debian
+ nevertheless support the use of the nemo-dropbox source and binary Debian
  packages and provide infrastructure for non-free packages (such as our bug
- tracking system and mailing lists). The licences of nautilus-dropbox do not
+ tracking system and mailing lists). The licences of nemo-dropbox do not
  forbid Debian from using autobuilders to create binary packages.
  .
  The following two points do not satisfy the Debian Free Software Guidelines:
-  - The artwork of nautilus-dropbox is licensed under the Creative Commons
+  - The artwork of nemo-dropbox is licensed under the Creative Commons
     Attribution-No Derivative Works 3.0 Unported License
-  - The nautilus-dropbox package downloads proprietary dropbox binary programs
+  - The nemo-dropbox package downloads proprietary dropbox binary programs
     from dropbox.com, which are necessary for its function.
 
 Files: *
